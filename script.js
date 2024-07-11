@@ -21,8 +21,22 @@ const Gameboard = (function(){
 })();
 
 function createPlayer(name){
-  const makeMove = () => Gameboard.markCell;
+  const makeMove = () => Gameboard.markCell();
   return {name, makeMove}
+}
+
+function Play(){
+  let moveOrder = false;
+  let winDeclared = false;
+  const getMoveOrder = () => moveOrder;
+  const changeMoveOrder = () => moveOrder = moveOrder == false
+  const marker = () => moveOrder == false ? 'X' : 'O';
+  const playRound = function(){
+    while (winDeclared == false) {
+      
+    }
+  };
+  const startGame = () => null;
 }
 
 Gameboard.displayBoard()
