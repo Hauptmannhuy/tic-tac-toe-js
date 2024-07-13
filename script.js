@@ -39,6 +39,15 @@
        4:'',5:'',6:'',
        7:'',8:'',9:''
       },
+      checkDraw: function () {
+        for (let i = 1; i <= 9; i++) {
+          const element = board[i];
+          if (element == 'X' || element == 'O') {
+            return false;
+          }
+        }
+        return true;
+      },
       checkWin: function () {
         const combinations = [[1,2,3],[4,5,6],[7,8,9],[1,4,7],[2,5,8],[3,6,9],[1,5,9],[3,5,7]]
         let board = this.board
@@ -77,11 +86,7 @@
       }
     }
   
-    gameModule.setPlayers();
-    boardModule.board[1] = 'X'
-    boardModule.board[2] = 'X'
-    boardModule.board[3] = 'X'
-    gameModule.play(1);  
+
     
   
   })()
