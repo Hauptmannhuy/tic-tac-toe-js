@@ -3,24 +3,29 @@
       players: [],
       moveOrder: false,
       winDeclared: false,
-      init: function () {
-        this.setPlayers()
+      cacheDom: function () {
+        this.gridContainer = document.getElementById('grid')
+        console.log(this.gridContainer)
+        
+      },
+      bindEvents: function(){
+       this.gridContainer.addEventListener('click', (e)=>{
+        this.play(e)
+       })
+      },
+      init: function(){
+        this.cacheDom();
+        this.bindEvents();
       },
       setPlayers: function () {
         let player1 = playerModule.createPlayer('josh')
         let player2 = playerModule.createPlayer('123')
         this.players.push(player1,player2)
       },
-      play: function (num) {
-        boardModule.checkWin()
+      play: function (event) {
+        console.log(event)
           let player = this.moveOrder == false ? this.players[0] : this.players[1];
-         let valid = player.makeMove(num, marker = this.marker() )
-         if (valid == null) {
-          this.changeMove();
-          console.log(this.moveOrder)
-         } else {
-          console.log(this.moveOrder)
-         }
+        
       },
       marker: function () {
        return this.moveOrder == false ? 'X' : 'O';
@@ -86,7 +91,7 @@
       }
     }
   
-
+    gameModule.init()
     
   
   })()
