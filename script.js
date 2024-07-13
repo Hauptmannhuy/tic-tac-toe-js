@@ -24,20 +24,35 @@ function createPlayer(name){
   const makeMove = () => Gameboard.markCell();
   return {name, makeMove}
 }
+const gameFlow = (function () {
+  var  gameModule = {
+    players: [],
+    moveOrder: false,
+    winDeclared: false,
+    init: function () {
+      this.setPlayers()
+      this.play()
+    },
+    setPlayers: function () {
+      let player1 = createPlayer(prompt)
+      let player2 = createPlayer(prompt)
+      this.players.push(player1,player2)
+    },
+    play: function () {
+      while (this.winDeclared == false) {
+        
+      }
+    },
+    changeMove: function () {
+      this.moveOrder = this.moveOrder == false;
+    },
+    declareWin: function () {
+      this.winDeclared = true;
+    },
+     
+  }
 
-function Play(){
-  let moveOrder = false;
-  let winDeclared = false;
-  const getMoveOrder = () => moveOrder;
-  const changeMoveOrder = () => moveOrder = moveOrder == false
-  const marker = () => moveOrder == false ? 'X' : 'O';
-  const playRound = function(){
-    while (winDeclared == false) {
-      
-    }
-  };
-  const startGame = () => null;
-}
+})()
 
 Gameboard.displayBoard()
 
