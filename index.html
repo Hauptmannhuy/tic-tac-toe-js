@@ -7,18 +7,29 @@
     <title>Document</title>
 </head>
 <body>
-
 <div class="container">
-    <div id="grid">
-        <div id="square-1" class="square"></div>
-        <div id="square-2"class="square"></div>
-        <div id="square-3"class="square"></div>
-        <div id="square-4"class="square"></div>
-        <div id="square-5" class="square"></div>
-        <div id="square-6"class="square"></div>
-        <div id="square-7" class="square"></div>
-        <div id="square-8" class="square"></div>
-        <div id="square-9" class="square"></div>
+        <div class="start">
+            <form>
+                <label>Player 1:</label>
+                <input type="text">
+                <label >Player 2:</label>
+                <input type="text">
+            </form>
+            <button id="startBtn">Start!</button>
+        </div>
+    <div class="container-grid unvisible">
+        <div id="grid">
+            <div id="square-1" class="square"></div>
+            <div id="square-2"class="square"></div>
+            <div id="square-3"class="square"></div>
+            <div id="square-4"class="square"></div>
+            <div id="square-5" class="square"></div>
+            <div id="square-6"class="square"></div>
+            <div id="square-7" class="square"></div>
+            <div id="square-8" class="square"></div>
+            <div id="square-9" class="square"></div>
+        </div>
+        <button id="reset">Reset</button>
     </div>
 </div>
     <script src="script.js"></script>

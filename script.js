@@ -1,26 +1,29 @@
 (function () {
     var  gameModule = {
-      players: [],
       moveOrder: false,
-      winDeclared: false,
       cacheDom: function () {
-        this.gridContainer = document.getElementById('grid')
-        
+        this.startMenu = document.querySelector('.start')
+        this.gridContainer = document.querySelector('.container-grid')
+        this.grid = document.getElementById('grid')
+        this.btnReset = document.getElementById('reset')
+        this.squares = document.querySelectorAll('.square')
       },
       bindEvents: function(){
-       this.gridContainer.addEventListener('click', (e)=>{
+       this.grid.addEventListener('click', (e)=>{
         this.play(e)
+       })
+       this.btnReset.addEventListener('click', (e)=> {
+        this.reset()
        })
       },
       init: function(){
         this.cacheDom();
         this.bindEvents();
-        this.setPlayers()
       },
-      setPlayers: function () {
-        let player1 = playerModule.createPlayer('player 1')
-        let player2 = playerModule.createPlayer('player 2')
-        this.players.push(player1,player2)
+      setPlayers: function (pl1,pl2) {
+        let player1 = playerModule.createPlayer(pl1)
+        let player2 = playerModule.createPlayer(pl2)
+        this.players = [player1,player2]
       },
       play: function (event) {
         console.log(boardModule.board)
@@ -31,7 +34,7 @@
          if (moveValid != false) {
             this.changeMove()
             if (boardModule.checkWin(marker)) {
-              prompt('Win')
+              this.declareWin()
             } else if (boardModule.checkDraw() == true) {
               prompt('Draw')
             }
@@ -48,7 +51,14 @@
         this.moveOrder = this.moveOrder == false;
       },
       declareWin: function () {
-        this.winDeclared = true;
+        const name  = this.moveOrder == false ? this.players[0].name : this.players[1].name
+        prompt(`${name} have won!`)
+      },
+      reset: function () {
+        for (let square of this.squares) {
+          square.innerHTML = ''
+        }
+        this.moveOrder = false;
       }
       
     };
@@ -104,8 +114,18 @@
         return {name, makeMove}
       }
     }
-  
-    gameModule.init()
+
+    const startBtn = document.getElementById('startBtn')
+
+    startBtn.addEventListener('click', () =>{
+      const names = document.querySelectorAll('input')
+      console.log('123')
+      gameModule.setPlayers(names[0].value, names[1].value)
+      gameModule.init()
+      gameModule.gridContainer.classList.remove('unvisible')
+      console.log(gameModule.startMenu)
+      gameModule.startMenu.classList.add('unvisible')
+    })
     
   
   })()
